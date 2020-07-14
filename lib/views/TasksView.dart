@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import '../Components/TaskList.dart';
 
-class Tasks extends StatelessWidget {
-  Tasks({this.taskCounter});
+class TasksView extends StatelessWidget {
+  TasksView({this.taskCounter});
 
   final int taskCounter;
 
@@ -48,6 +49,7 @@ class Tasks extends StatelessWidget {
           ),
           Expanded(
             child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 30.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.only(
@@ -55,6 +57,7 @@ class Tasks extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
+              child: TasksList(),
             ),
           ),
         ],

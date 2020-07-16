@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../Components/TaskList.dart';
+import '../Components/AddTaskModal.dart';
 
 class TasksView extends StatelessWidget {
   TasksView({this.taskCounter});
@@ -65,7 +66,13 @@ class TasksView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.lightBlueAccent,
         child: Icon(Icons.add),
-        onPressed: null,
+        onPressed: () {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) => AddTaskModal(),
+            //This format is the same as: Widget bottomSheetModal(BuildContext context) => Container();
+          );
+        },
       ),
     );
   }

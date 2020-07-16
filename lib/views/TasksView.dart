@@ -69,8 +69,14 @@ class TasksView extends StatelessWidget {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            builder: (context) => AddTaskModal(),
-            //This format is the same as: Widget bottomSheetModal(BuildContext context) => Container();
+            isScrollControlled: true,
+            builder: (context) => SingleChildScrollView(
+              child: Container(
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).viewInsets.bottom),
+                child: AddTaskModal(),
+              ),
+            ),
           );
         },
       ),

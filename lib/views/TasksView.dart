@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import '../Components/TaskList.dart';
 import '../Components/AddTaskModal.dart';
+import '../Models/Task.dart';
 
-class TasksView extends StatelessWidget {
-  TasksView({this.taskCounter});
+class TasksView extends StatefulWidget {
+  TasksView({this.newTask});
 
-  final int taskCounter;
+  String newTask;
+
+  @override
+  _TasksViewState createState() => _TasksViewState();
+}
+
+class _TasksViewState extends State<TasksView> {
+  List<Task> tasks = [
+    Task(name: 'name'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -39,7 +49,7 @@ class TasksView extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  '$taskCounter tasks',
+                  '${tasks.length} tasks',
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Colors.white,
@@ -58,7 +68,7 @@ class TasksView extends StatelessWidget {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(),
+              child: TasksList(tasks),
             ),
           ),
         ],
@@ -74,7 +84,15 @@ class TasksView extends StatelessWidget {
               child: Container(
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
-                child: AddTaskModal(),
+                child: AddTaskModal((newTask) {
+                  setState(() {
+                    tasks.add(
+                      Task(name: newTask),
+                      //add new task from the AddTaskModal to the List of tasks
+                    );
+                  });
+                  Navigator.pop(context);
+                }),
               ),
             ),
           );

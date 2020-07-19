@@ -2,8 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddTaskModal extends StatelessWidget {
+  AddTaskModal(this.addTaskCallback);
+
+  final Function addTaskCallback;
+
   @override
   Widget build(BuildContext context) {
+    String newTask;
+
     return Container(
       color: Color(0xff757575),
       child: Container(
@@ -37,12 +43,18 @@ class AddTaskModal extends StatelessWidget {
               style: TextStyle(
                 fontSize: 25.0,
               ),
+              onChanged: (value) {
+                newTask = value;
+              },
             ),
             Padding(
               padding: EdgeInsets.only(top: 15.0),
               child: FlatButton(
                 color: Colors.lightBlueAccent,
-                onPressed: () {},
+                onPressed: () {
+                  addTaskCallback(newTask);
+                  //push the value of the new task string to the Task View
+                },
                 child: Text(
                   'Add Task',
                   style: TextStyle(color: Colors.white, fontSize: 20.0),

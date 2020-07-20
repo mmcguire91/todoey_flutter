@@ -1,25 +1,17 @@
 import 'package:flutter/material.dart';
 import 'TaskTile.dart';
 //This is the UI component and Logic that the task list will consist of within the white container at the bottom of the tasksview
-import '../Models/Task.dart';
+import 'package:provider/provider.dart';
+import '../Models/TaskData.dart';
 
-class TasksList extends StatefulWidget {
-  TasksList(this.tasks);
-
-  final List<Task> tasks;
-
-  @override
-  _TasksListState createState() => _TasksListState();
-}
-
-class _TasksListState extends State<TasksList> {
+class TasksList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (context, index) {
         return TaskTile(
-          taskString: widget.tasks[index].name,
-          isChecked: widget.tasks[index].isDone,
+          taskString: Provider.of<TaskData>(context).tasks[index].name,
+          isChecked: Provider.of<TaskData>(context).tasks[index].isDone,
           /*return a task tile where
         * taskString is retrieved from the TaskTile property, this retrieves the contents of the taskString
         *  --> retrieves the tasks from the list of tasks,
@@ -28,15 +20,15 @@ class _TasksListState extends State<TasksList> {
         *  --> retrieves the tasks from the list of tasks,
         *  --> specifically the isDone property from class Task in Task.dart*/
           checkboxCallback: (checkboxState) {
-            setState(() {
-              widget.tasks[index].toggleDone();
-              //estbalish the logic (an anonymous function) for the checkbox to be checked or not
-            });
+//            setState(() {
+//              Provider.of<TaskData>(context).tasks[index].toggleDone();
+//              //estbalish the logic (an anonymous function) for the checkbox to be checked or not
+//            });
           },
         );
       },
-      itemCount:
-          widget.tasks.length, // display as many tasks as are in the list
+      itemCount: Provider.of<TaskData>(context).tasks.length,
+      // display as many tasks as are in the list
     );
   }
 }

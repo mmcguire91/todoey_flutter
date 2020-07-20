@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todoey_flutter/Models/TaskData.dart';
 import '../Components/TaskList.dart';
 import '../Components/AddTaskModal.dart';
+import 'package:provider/provider.dart';
 import '../Models/Task.dart';
 
 class TasksView extends StatefulWidget {
@@ -13,10 +15,6 @@ class TasksView extends StatefulWidget {
 }
 
 class _TasksViewState extends State<TasksView> {
-  List<Task> tasks = [
-    Task(name: 'name'),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,7 +47,7 @@ class _TasksViewState extends State<TasksView> {
                   ),
                 ),
                 Text(
-                  '${tasks.length} tasks',
+                  '${Provider.of<TaskData>(context).tasks.length} tasks',
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Colors.white,
@@ -68,7 +66,7 @@ class _TasksViewState extends State<TasksView> {
                   topRight: Radius.circular(20.0),
                 ),
               ),
-              child: TasksList(tasks),
+              child: TasksList(),
             ),
           ),
         ],
@@ -86,10 +84,10 @@ class _TasksViewState extends State<TasksView> {
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: AddTaskModal((newTask) {
                   setState(() {
-                    tasks.add(
-                      Task(name: newTask),
-                      //add new task from the AddTaskModal to the List of tasks
-                    );
+                    Provider.of<TaskData>(context, listen: false).tasks.add(
+                          Task(name: newTask),
+                          //add new task from the AddTaskModal to the List of tasks
+                        );
                   });
                   Navigator.pop(context);
                 }),

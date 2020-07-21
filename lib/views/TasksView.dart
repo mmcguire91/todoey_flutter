@@ -47,7 +47,7 @@ class _TasksViewState extends State<TasksView> {
                   ),
                 ),
                 Text(
-                  '${Provider.of<TaskData>(context).tasks.length} tasks',
+                  '${Provider.of<TaskData>(context).taskCount} tasks',
                   style: TextStyle(
                     fontSize: 20.0,
                     color: Colors.white,

@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      //changeNotifierProvider will transmit data through the app
+      //changeNotifierProvider will transmit data through the app.
       create: (context) => TaskData(),
       child: MaterialApp(
         home: TasksView(),

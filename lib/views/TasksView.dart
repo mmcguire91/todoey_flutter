@@ -3,18 +3,11 @@ import 'package:todoey_flutter/Models/TaskData.dart';
 import '../Components/TaskList.dart';
 import '../Components/AddTaskModal.dart';
 import 'package:provider/provider.dart';
-import '../Models/Task.dart';
 
-class TasksView extends StatefulWidget {
+class TasksView extends StatelessWidget {
   TasksView({this.newTask});
 
   String newTask;
-
-  @override
-  _TasksViewState createState() => _TasksViewState();
-}
-
-class _TasksViewState extends State<TasksView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -83,12 +76,12 @@ class _TasksViewState extends State<TasksView> {
                 padding: EdgeInsets.only(
                     bottom: MediaQuery.of(context).viewInsets.bottom),
                 child: AddTaskModal((newTask) {
-                  setState(() {
-                    Provider.of<TaskData>(context, listen: false).tasks.add(
-                          Task(name: newTask),
-                          //add new task from the AddTaskModal to the List of tasks
-                        );
-                  });
+//                  setState(() {
+//                    Provider.of<TaskData>(context, listen: false).tasks.add(
+//                          Task(name: newTask),
+//                          //add new task from the AddTaskModal to the List of tasks
+//                        );
+//                  });
                   Navigator.pop(context);
                 }),
               ),

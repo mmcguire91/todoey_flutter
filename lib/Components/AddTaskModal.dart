@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../Models/TaskData.dart';
 
 class AddTaskModal extends StatelessWidget {
   AddTaskModal(this.addTaskCallback);
@@ -52,8 +54,9 @@ class AddTaskModal extends StatelessWidget {
               child: FlatButton(
                 color: Colors.lightBlueAccent,
                 onPressed: () {
-                  addTaskCallback(newTask);
-                  //push the value of the new task string to the Task View
+                  Provider.of<TaskData>(context, listen: false)
+                      .addTask(newTask);
+                  Navigator.pop(context);
                 },
                 child: Text(
                   'Add Task',

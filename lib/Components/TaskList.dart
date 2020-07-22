@@ -25,6 +25,10 @@ class TasksList extends StatelessWidget {
               taskData.updateTask(task);
               //call the updateTask method from TaskData to update the task (toggle checkbox) at the current index
             },
+            longPressCallback: () {
+              taskData.deleteTask(task);
+              //when user long presses item call the delete task method in TaskData to remove selected task from the task list
+            },
           );
         },
         itemCount: taskData.taskCount,

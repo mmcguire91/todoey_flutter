@@ -10,9 +10,10 @@ class TasksList extends StatelessWidget {
     return Consumer<TaskData>(builder: (context, taskData, child) {
       return ListView.builder(
         itemBuilder: (context, index) {
+          final task = taskData.tasks[index];
           return TaskTile(
-            taskString: taskData.tasks[index].name,
-            isChecked: taskData.tasks[index].isDone,
+            taskString: task.name,
+            isChecked: task.isDone,
             /*return a task tile where
           * taskString is retrieved from the TaskTile property, this retrieves the contents of the taskString
           *  --> retrieves the tasks from the list of tasks,
@@ -21,10 +22,8 @@ class TasksList extends StatelessWidget {
           *  --> retrieves the tasks from the list of tasks,
           *  --> specifically the isDone property from class Task in Task.dart*/
             checkboxCallback: (checkboxState) {
-//            setState(() {
-//              Provider.of<TaskData>(context).tasks[index].toggleDone();
-//              //estbalish the logic (an anonymous function) for the checkbox to be checked or not
-//            });
+              taskData.updateTask(task);
+              //call the updateTask method from TaskData to update the task (toggle checkbox) at the current index
             },
           );
         },

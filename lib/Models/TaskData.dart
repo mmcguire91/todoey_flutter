@@ -22,4 +22,9 @@ class TaskData extends ChangeNotifier {
     notifyListeners();
   }
   //method for adding tasks and notifying those tapping into the provider elsewhere that the data has been updated
+
+  void updateTask(Task task) {
+    task.toggleDone();
+    notifyListeners();
+  }
 }
